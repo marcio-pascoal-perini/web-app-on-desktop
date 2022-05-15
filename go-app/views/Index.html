@@ -1,0 +1,68 @@
+{{ define "Index" }}
+{{ template "Header" }}
+<div class="container">
+  <div class="row row-cols-1">
+    <div class="col text-center">
+      <h1>Contacts</h1>
+    </div>
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Coordinates</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range . }}
+            <tr>
+              <th class="text-end" scope="row">{{ .ID }}</td>
+              <td>{{ .Name }}</td>
+              <td>{{ .Address }}</td>
+              <td>{{ .Email }}</td>
+              <td>{{ .Phone }}</td>
+              <td>{{ .Coordinates }}</td>
+              <td><a class="btn btn-primary btn-sm" href="/details?id={{ .ID }}" role="button">Details</a></td>
+              <td><a class="btn btn-primary btn-sm" href="/edit?id={{ .ID }}" role="button">Edit</a></td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteDialog" onclick="setID('{{ .ID }}')">Delete</button>
+              </td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col float-start">
+      <a class="btn btn-primary" href="/create" role="button">Create</a>
+    </div>
+    <div class="col">&nbsp;</div>
+  </div>
+  <div class="modal" id="deleteDialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <h5 id="question"></h5>
+        </div>
+        <div class="modal-footer">
+          <a id="reference" class="btn btn-danger" href="" role="button">Ok</a>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ template "Footer" }}
+{{ end }}

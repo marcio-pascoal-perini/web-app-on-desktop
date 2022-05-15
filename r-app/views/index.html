@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/styles/autocomplete.css" rel="stylesheet">
+    <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/scripts/autocomplete.js"></script>
+    <title>Alpha Vantage</title>
+    <style>
+    </style>
+    <script type="text/javascript">
+        function startTimer(duration, display) {
+            var timer = duration,
+                minutes,
+                seconds;
+            setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                display.textContent = minutes + ':' + seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            document.getElementById('symbol').focus();
+            startTimer(15, document.getElementById('time'));
+        };
+
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row-cols-1">
+            <div class="col text-center">
+                <h1>Alpha Vantage</h1>
+            </div>
+            <div class="col text-center">&nbsp;</div>
+        </div>
+        <div class="row row-cols-2">
+            <div class="col">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <form id="form" name="form" class="d-grid gap-2 d-md-flex left-content-md-end" method="post">
+                            <div class="autocomplete" onclick="document.getElementById('search').click();">
+                                <input id="symbol" name="symbol" class="form-control" type="text" placeholder="Example: GOOG" />
+                            </div>
+                            <button id="search" name="search" class="btn btn-primary" type="submit">Search</button>
+                            <h5 id='time' name='time'></h5>
+                        </form>
+                    </div>
+                    <div class="col">&nbsp;</div>
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Symbol</th>
+                                        <td>@Symbol@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Name</th>
+                                        <td>@Name@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Description</th>
+                                        <td>@Description@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Exchange</th>
+                                        <td>@Exchange@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Currency</th>
+                                        <td>@Currency@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Country</th>
+                                        <td>@Country@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sector</th>
+                                        <td>@Sector@</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <img src="/dayinfochart?symbol=@Symbol@" class="img-fluid">
+            </div>
+            <div class="col">
+                <img src="/weeklyinfochart?symbol=@Symbol@" class="img-fluid">
+            </div>
+            <div class="col">
+                <img src="/monthlyinfochart?symbol=@Symbol@" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const input = document.getElementById('symbol');
+        input.addEventListener('keyup', (event) => {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                document.getElementById('search').click();
+            }
+        });
+        const symbols = @Symbols@;
+        autocomplete(input, symbols);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+{{ define "Details" }}
+{{ template "Header" }}
+<div class="container">
+    <div class="row row-cols-1">
+        <div class="col text-center">
+            <h1>Contact {{ .ID }}</h1>
+        </div>
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Field</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>{{ .ID }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>{{ .Name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address</th>
+                            <td>{{ .Address }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>{{ .Email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone</th>
+                            <td>{{ .Phone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Coordinates</th>
+                            <td>{{ .Coordinates }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/edit?id={{ .ID }}" class="btn btn-primary me-md-2">Edit</a>
+            <a href="/" class="btn btn-primary">Home</a>
+        </div>
+        <div class="col">&nbsp;</div>
+    </div>
+</div>
+{{ template "Footer" }}
+{{ end }}
