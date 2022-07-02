@@ -38,6 +38,9 @@ async function isInUse(port) {
 }
 
 /*
+//
+// php-app
+//
 async function launchWebServer() {
     const { spawn } = require('child_process')
     const executablePath = `${__dirname}/php/php.exe`
@@ -70,6 +73,9 @@ async function launchWebServer() {
 }
 */
 
+//
+// r-app
+//
 async function launchWebServer() {
     const { spawn } = require('child_process')
     const executablePath = `${__dirname}/R/bin/Rscript.exe`
@@ -109,6 +115,9 @@ async function launchWebServer() {
 }
 
 /*
+//
+// go-app
+//
 async function launchWebServer() {
     const { spawn } = require('child_process')
     const executablePath = `${__dirname}/go-app/crud.exe`
